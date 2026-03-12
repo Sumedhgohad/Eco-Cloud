@@ -1,23 +1,18 @@
-#pragma once
-#include <iostream>
-#include <string>
-using namespace std;
+#ifndef PCB_H
+#define PCB_H
 
-struct PCB {
-    string job_id;   
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char job_id[50];
     int burst_time;
     int memory_req;
-    
-    // CONSTRUCTOR: Expecting exactly 3 arguments (string, int, int)
-    PCB(string id, int burst, int mem) {
-        job_id = id;
-        burst_time = burst;
-        memory_req = mem;
-    }
+} PCB;
 
-    void printDetails() {
-        cout << "[Job ID: " << job_id 
-             << " | Burst: " << burst_time 
-             << " | Mem: " << memory_req << "MB]" << endl;
-    }
-};
+PCB* create_pcb(const char* id, int burst, int mem);
+void print_pcb_details(PCB* p);
+void destroy_pcb(PCB* p);
+
+#endif
